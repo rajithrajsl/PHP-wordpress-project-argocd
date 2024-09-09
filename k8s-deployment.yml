@@ -52,7 +52,7 @@ spec:
   tls:
   - hosts:
     - phpwordpress.dotnet.displayme.net  # Your domain
-    secretName: dotnet.displayme.net-ssl
+    secretName: dotnet.displayme.net-ssl-argocd
   rules:
   - host: phpwordpress.dotnet.displayme.net
     http:
