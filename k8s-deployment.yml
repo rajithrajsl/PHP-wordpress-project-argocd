@@ -44,9 +44,6 @@ metadata:
   namespace: wordpress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true" # Forces HTTPS redirection
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"  # Ensure the backend uses HTTPS
 spec:
   ingressClassName: nginx
   tls:
