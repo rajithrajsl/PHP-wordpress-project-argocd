@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-apache
+  name: PHP-wordpress
   namespace: wordpress
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: wordpress-apache
+      app: PHP-wordpress
   template:
     metadata:
       labels:
-        app: wordpress-apache
+        app: PHP-wordpress
     spec:
       containers:
       - name: httpd
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-apache
+  name: PHP-wordpress
   namespace: wordpress
 spec:
   selector:
-    app: wordpress-apache
+    app: PHP-wordpress
   ports:
   - protocol: TCP
     port: 80
@@ -40,7 +40,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wordpress-apache
+  name: PHP-wordpress
   namespace: wordpress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -48,16 +48,16 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - wordpress-apache.dotnet.displayme.net  # Your domain
+    - PHP-wordpress.dotnet.displayme.net  # Your domain
     secretName: dotnet.displayme.net-ssl
   rules:
-  - host: wordpress-apache.dotnet.displayme.net
+  - host: PHP-wordpress.dotnet.displayme.net
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: wordpress-apache
+            name: PHP-wordpress
             port:
               number: 80
