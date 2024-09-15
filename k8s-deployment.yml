@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phpwordpress
-  namespace: wordpress
+  name: phpwordpress-new
+  namespace: wordpress-new
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: phpwordpress
+      app: phpwordpress-new
   template:
     metadata:
       labels:
-        app: phpwordpress
+        app: phpwordpress-new
     spec:
       containers:
       - name: httpd
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpwordpress
-  namespace: wordpress
+  name: phpwordpress-new
+  namespace: wordpress-new
 spec:
   selector:
-    app: phpwordpress
+    app: phpwordpress-new
   ports:
   - protocol: TCP
     port: 80
@@ -40,8 +40,8 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: phpwordpress
-  namespace: wordpress
+  name: phpwordpress-new
+  namespace: wordpress-new
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -58,6 +58,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: phpwordpress
+            name: phpwordpress-new
             port:
               number: 80
