@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: httpd
-        image: mightyleo/wordpress-new:1.0-33
+        image: mightyleo/wordpress-new:1.0-34
         ports:
         - containerPort: 80
 
